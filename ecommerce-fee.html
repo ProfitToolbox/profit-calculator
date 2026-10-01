@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free E-commerce Fee & Profit Calculator | ProfitToolbox</title>
+
+  <meta name="description" content="Free e-commerce fee calculator. Estimate marketplace fees, payment processing fees, shipping, product costs, advertising costs, profit, and profit margin per order.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f7fb;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 48px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2.3rem;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: auto;
+      color: #d1d5db;
+      font-size: 1.05rem;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .calculator,
+    .info {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+    }
+
+    .calculator h2,
+    .info h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #111827;
+    }
+
+    .helper {
+      margin-top: 5px;
+      color: #6b7280;
+      font-size: 0.82rem;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .result {
+      background: #f3f4f6;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .result span {
+      display: block;
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .result strong {
+      font-size: 1.35rem;
+    }
+
+    .profit-result {
+      margin-top: 15px;
+      background: #eef2ff;
+    }
+
+    .info {
+      margin-top: 25px;
+    }
+
+    .info h2 {
+      margin-top: 25px;
+    }
+
+    .info h2:first-child {
+      margin-top: 0;
+    }
+
+    .faq {
+      margin-top: 25px;
+    }
+
+    .faq h3 {
+      margin-bottom: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid,
+      .results {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      .calculator,
+      .info {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Free E-commerce Fee & Profit Calculator</h1>
+    <p>
+      Estimate marketplace fees, payment processing, shipping, product costs,
+      advertising expenses, profit, and profit margin per order.
+    </p>
+  </header>
+
+  <main>
+
+    <section class="calculator">
+
+      <h2>Calculate Your E-commerce Profit</h2>
+
+      <p>
+        Enter your typical order information below. The calculator will estimate
+        your total fees, total costs, profit per order, and profit margin.
+      </p>
+
+      <div class="grid">
+
+        <div>
+          <label for="price">Selling Price Per Order ($)</label>
+          <input id="price" type="number" min="0" step="0.01" placeholder="50">
+        </div>
+
+        <div>
+          <label for="productCost">Product Cost Per Order ($)</label>
+          <input id="productCost" type="number" min="0" step="0.01" placeholder="15">
+        </div>
+
+        <div>
+          <label for="platformFee">Marketplace / Platform Fee (%)</label>
+          <input id="platformFee" type="number" min="0" step="0.01" placeholder="10">
+
+          <div class="helper">
+            Enter the percentage charged by your selling platform.
+          </div>
+        </div>
+
+        <div>
+          <label for="paymentFee">Payment Processing Fee (%)</label>
+          <input id="paymentFee" type="number" min="0" step="0.01" placeholder="2.9">
+
+          <div class="helper">
+            Enter your payment processor's percentage fee.
+          </div>
+        </div>
+
+        <div>
+          <label for="paymentFixed">Payment Fixed Fee ($)</label>
+          <input id="paymentFixed" type="number" min="0" step="0.01" placeholder="0.30">
+        </div>
+
+        <div>
+          <label for="shipping">Shipping Cost Per Order ($)</label>
+          <input id="shipping" type="number" min="0" step="0.01" placeholder="5">
+        </div>
+
+        <div>
+          <label for="ads">Advertising Cost Per Order ($)</label>
+          <input id="ads" type="number" min="0" step="0.01" placeholder="3">
+        </div>
+
+        <div>
+          <label for="other">Other Cost Per Order ($)</label>
+          <input id="other" type="number" min="0" step="0.01" placeholder="0">
+        </div>
+
+      </div>
+
+      <button onclick="calculate()">Calculate My E-commerce Profit</button>
+
+      <div class="results">
+
+        <div class="result">
+          <span>Revenue</span>
+          <strong id="revenue">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Platform Fee</span>
+          <strong id="platform">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Payment Fee</span>
+          <strong id="payment">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Total Fees</span>
+          <strong id="fees">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Total Costs</span>
+          <strong id="costs">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Profit Per Order</span>
+          <strong id="profit">$0.00</strong>
+        </div>
+
+      </div>
+
+      <div class="result profit-result">
+        <span>Profit Margin</span>
+        <strong id="margin">0%</strong>
+      </div>
+
+    </section>
+
+    <section class="info">
+
+      <h2>How Does an E-commerce Fee Calculator Work?</h2>
+
+      <p>
+        An e-commerce fee calculator helps online sellers estimate how much
+        money remains after marketplace fees, payment processing fees,
+        product costs, shipping, advertising, and other expenses.
+      </p>
+
+      <p>
+        Start with your selling price. Then enter the fees and costs that
+        apply to your particular business and sales channel.
+      </p>
+
+      <p>
+        Because fee structures vary between marketplaces, payment processors,
+        stores, products, and locations, this calculator lets you enter your
+        own fee percentages instead of assuming one universal rate.
+      </p>
+
+      <h2>Why Are E-commerce Fees Important?</h2>
+
+      <p>
+        A product can have strong sales while still producing a small profit
+        if fees and operating costs are too high. Understanding your costs
+        can help you evaluate pricing, advertising, shipping, and product
+        profitability.
+      </p>
+
+      <h2>How Is E-commerce Profit Calculated?</h2>
+
+      <p>
+        Estimated profit per order is calculated by subtracting product costs,
+        platform fees, payment processing fees, shipping, advertising, and
+        other entered expenses from your selling price.
+      </p>
+
+      <p>
+        Profit margin is the percentage of revenue that remains after those
+        expenses.
+      </p>
+
+      <div class="faq">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What fees should an online seller include?</h3>
+        <p>
+          Common expenses include marketplace or platform fees, payment
+          processing fees, product costs, shipping, advertising, packaging,
+          returns, and other operating expenses.
+        </p>
+
+        <h3>Are e-commerce fees the same on every platform?</h3>
+        <p>
+          No. Fees can vary by platform, product category, payment method,
+          subscription plan, location, and other factors. Check the current
+          fee schedule for the specific platform you use.
+        </p>
+
+        <h3>Should I include advertising costs?</h3>
+        <p>
+          Yes, if advertising is part of your sales strategy. Including an
+          estimated advertising cost per order can give you a more realistic
+          picture of your profit.
+        </p>
+
+        <h3>What is a good e-commerce profit margin?</h3>
+        <p>
+          Profit margins vary widely depending on the product, business model,
+          industry, pricing, and operating expenses. There is no single margin
+          that applies to every online business.
+        </p>
+
+        <h3>Can I use this calculator for Amazon, Etsy, Shopify, eBay, or other stores?</h3>
+        <p>
+          Yes. Enter the applicable fee percentages and costs for your specific
+          selling channel. Always verify the current fees directly with the
+          platform you use.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>ProfitToolbox — Free Business Calculators & Tools</p>
+    <p>
+      This calculator provides estimates for informational purposes only.
+      Actual fees and expenses may vary.
+    </p>
+  </footer>
+
+  <script>
+
+    function money(number) {
+      return "$" + number.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function getValue(id) {
+      return Number(document.getElementById(id).value) || 0;
+    }
+
+    function calculate() {
+
+      const price = getValue("price");
+      const productCost = getValue("productCost");
+      const platformFeePercent = getValue("platformFee");
+      const paymentFeePercent = getValue("paymentFee");
+      const paymentFixed = getValue("paymentFixed");
+      const shipping = getValue("shipping");
+      const ads = getValue("ads");
+      const other = getValue("other");
+
+      const platformFee =
+        price * (platformFeePercent / 100);
+
+      const paymentPercentageFee =
+        price * (paymentFeePercent / 100);
+
+      const paymentFee =
+        paymentPercentageFee + paymentFixed;
+
+      const totalFees =
+        platformFee + paymentFee;
+
+      const totalCosts =
+        productCost +
+        shipping +
+        ads +
+        other +
+        totalFees;
+
+      const profit =
+        price - totalCosts;
+
+      const margin =
+        price > 0
+          ? (profit / price) * 100
+          : 0;
+
+      document.getElementById("revenue").textContent =
+        money(price);
+
+      document.getElementById("platform").textContent =
+        money(platformFee);
+
+      document.getElementById("payment").textContent =
+        money(paymentFee);
+
+      document.getElementById("fees").textContent =
+        money(totalFees);
+
+      document.getElementById("costs").textContent =
+        money(totalCosts);
+
+      document.getElementById("profit").textContent =
+        money(profit);
+
+      document.getElementById("margin").textContent =
+        margin.toFixed(1) + "%";
+    }
+
+  </script>
+
+</body>
+</html>
