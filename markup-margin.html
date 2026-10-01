@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free Markup & Profit Margin Calculator | ProfitToolbox</title>
+
+  <meta name="description" content="Free markup and profit margin calculator for small businesses. Calculate selling price, markup percentage, profit margin, profit per sale, and gross profit in seconds.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f7fb;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 48px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2.3rem;
+    }
+
+    header p {
+      max-width: 700px;
+      margin: auto;
+      color: #d1d5db;
+      font-size: 1.05rem;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .calculator,
+    .info {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+    }
+
+    .calculator h2,
+    .info h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #111827;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .result {
+      background: #f3f4f6;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .result span {
+      display: block;
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .result strong {
+      font-size: 1.35rem;
+    }
+
+    .info {
+      margin-top: 25px;
+    }
+
+    .info h2 {
+      margin-top: 25px;
+    }
+
+    .info h2:first-child {
+      margin-top: 0;
+    }
+
+    .faq {
+      margin-top: 25px;
+    }
+
+    .faq h3 {
+      margin-bottom: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid,
+      .results {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      .calculator,
+      .info {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Free Markup & Profit Margin Calculator</h1>
+    <p>
+      Calculate your selling price, markup percentage, profit margin,
+      profit per sale, and gross profit in seconds.
+    </p>
+  </header>
+
+  <main>
+
+    <section class="calculator">
+
+      <h2>Calculate Your Markup & Profit Margin</h2>
+
+      <p>
+        Enter your product cost and selling price below to quickly understand
+        how much profit you make on each sale and how your markup compares
+        with your profit margin.
+      </p>
+
+      <div class="grid">
+
+        <div>
+          <label for="cost">Product Cost ($)</label>
+          <input id="cost" type="number" min="0" step="0.01" placeholder="20">
+        </div>
+
+        <div>
+          <label for="price">Selling Price ($)</label>
+          <input id="price" type="number" min="0" step="0.01" placeholder="50">
+        </div>
+
+        <div>
+          <label for="quantity">Number of Sales</label>
+          <input id="quantity" type="number" min="0" step="1" placeholder="100">
+        </div>
+
+      </div>
+
+      <button onclick="calculate()">Calculate My Numbers</button>
+
+      <div class="results">
+
+        <div class="result">
+          <span>Profit Per Sale</span>
+          <strong id="profitPerSale">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Markup</span>
+          <strong id="markup">0%</strong>
+        </div>
+
+        <div class="result">
+          <span>Profit Margin</span>
+          <strong id="margin">0%</strong>
+        </div>
+
+        <div class="result">
+          <span>Total Profit</span>
+          <strong id="totalProfit">$0.00</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="info">
+
+      <h2>What Is Markup?</h2>
+
+      <p>
+        Markup measures how much you increase a product's price above its cost.
+        For example, if a product costs $20 and you sell it for $50, your
+        markup is 150%.
+      </p>
+
+      <p>
+        Markup is calculated by comparing your profit per sale with your
+        product cost.
+      </p>
+
+      <h2>What Is Profit Margin?</h2>
+
+      <p>
+        Profit margin shows what percentage of your selling price remains as
+        profit after accounting for the product cost.
+      </p>
+
+      <p>
+        Markup and profit margin are related, but they are not the same thing.
+        This is why understanding both numbers can help when setting prices.
+      </p>
+
+      <h2>Markup vs. Profit Margin</h2>
+
+      <p>
+        Suppose a product costs $20 and sells for $50. The profit is $30.
+        The markup is 150%, while the profit margin is 60%.
+      </p>
+
+      <p>
+        Knowing the difference can help business owners avoid pricing
+        mistakes and better understand the profitability of their products.
+      </p>
+
+      <div class="faq">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is the difference between markup and profit margin?</h3>
+        <p>
+          Markup compares your profit with your product cost. Profit margin
+          compares your profit with your selling price. Because they use
+          different bases, the percentages will usually be different.
+        </p>
+
+        <h3>How do I calculate markup percentage?</h3>
+        <p>
+          Markup percentage is calculated by dividing profit per sale by
+          product cost and multiplying by 100.
+        </p>
+
+        <h3>How do I calculate profit margin?</h3>
+        <p>
+          Profit margin is calculated by dividing profit per sale by selling
+          price and multiplying by 100.
+        </p>
+
+        <h3>Can I use this calculator for ecommerce?</h3>
+        <p>
+          Yes. You can use it for ecommerce products, physical products,
+          handmade products, retail items, and many other businesses where
+          you know your product cost and selling price.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>ProfitToolbox — Free Business Calculators & Tools</p>
+    <p>This calculator provides estimates for informational purposes only.</p>
+  </footer>
+
+  <script>
+
+    function money(number) {
+      return "$" + number.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function calculate() {
+
+      const cost =
+        Number(document.getElementById("cost").value) || 0;
+
+      const price =
+        Number(document.getElementById("price").value) || 0;
+
+      const quantity =
+        Number(document.getElementById("quantity").value) || 0;
+
+      const profitPerSale = price - cost;
+
+      const markup =
+        cost > 0 ? (profitPerSale / cost) * 100 : 0;
+
+      const margin =
+        price > 0 ? (profitPerSale / price) * 100 : 0;
+
+      const totalProfit =
+        profitPerSale * quantity;
+
+      document.getElementById("profitPerSale").textContent =
+        money(profitPerSale);
+
+      document.getElementById("markup").textContent =
+        markup.toFixed(1) + "%";
+
+      document.getElementById("margin").textContent =
+        margin.toFixed(1) + "%";
+
+      document.getElementById("totalProfit").textContent =
+        money(totalProfit);
+
+    }
+
+  </script>
+
+</body>
+</html>
