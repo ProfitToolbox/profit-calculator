@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Small Business Profit Calculator</title>
+  <meta name="description" content="Free small business profit calculator. Calculate revenue, costs, profit, profit margin, and break-even sales quickly and easily.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 42px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+    }
+
+    header p {
+      margin: 0 auto;
+      max-width: 650px;
+      line-height: 1.6;
+      color: #d1d5db;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .calculator {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    .calculator h2 {
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .result {
+      background: #f3f4f6;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .result span {
+      display: block;
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .result strong {
+      font-size: 1.35rem;
+    }
+
+    .info {
+      background: white;
+      padding: 28px;
+      margin-top: 25px;
+      border-radius: 16px;
+      line-height: 1.7;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid,
+      .results {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Small Business Profit Calculator</h1>
+    <p>
+      Quickly estimate your revenue, total costs, profit, profit margin,
+      and break-even sales.
+    </p>
+  </header>
+
+  <main>
+
+    <section class="calculator">
+      <h2>Calculate Your Profit</h2>
+
+      <div class="grid">
+
+        <div>
+          <label for="price">Selling Price Per Sale ($)</label>
+          <input id="price" type="number" min="0" step="0.01" placeholder="50">
+        </div>
+
+        <div>
+          <label for="cost">Cost Per Sale ($)</label>
+          <input id="cost" type="number" min="0" step="0.01" placeholder="20">
+        </div>
+
+        <div>
+          <label for="fees">Fees Per Sale ($)</label>
+          <input id="fees" type="number" min="0" step="0.01" placeholder="2">
+        </div>
+
+        <div>
+          <label for="sales">Number of Sales</label>
+          <input id="sales" type="number" min="0" step="1" placeholder="100">
+        </div>
+
+        <div>
+          <label for="fixed">Monthly Fixed Costs ($)</label>
+          <input id="fixed" type="number" min="0" step="0.01" placeholder="500">
+        </div>
+
+        <div>
+          <label for="ads">Advertising Costs ($)</label>
+          <input id="ads" type="number" min="0" step="0.01" placeholder="200">
+        </div>
+
+      </div>
+
+      <button onclick="calculate()">Calculate My Profit</button>
+
+      <div class="results">
+
+        <div class="result">
+          <span>Total Revenue</span>
+          <strong id="revenue">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Total Costs</span>
+          <strong id="costs">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Estimated Profit</span>
+          <strong id="profit">$0.00</strong>
+        </div>
+
+        <div class="result">
+          <span>Profit Margin</span>
+          <strong id="margin">0%</strong>
+        </div>
+
+      </div>
+
+      <div class="result" style="margin-top:15px;">
+        <span>Break-Even Sales</span>
+        <strong id="breakEven">0</strong>
+      </div>
+
+    </section>
+
+    <section class="info">
+
+      <h2>How Does the Profit Calculator Work?</h2>
+
+      <p>
+        Your estimated revenue is calculated by multiplying your selling
+        price by the number of sales.
+      </p>
+
+      <p>
+        Your estimated costs include your cost per sale, transaction fees,
+        monthly fixed costs, and advertising expenses.
+      </p>
+
+      <p>
+        Your estimated profit is your total revenue minus your total costs.
+        Your profit margin shows what percentage of your revenue remains
+        after those costs.
+      </p>
+
+      <h2>Why Calculate Profit?</h2>
+
+      <p>
+        Knowing your numbers can help you understand whether a product,
+        service, or business idea is financially sustainable before you
+        spend more money.
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Free Small Business Profit Calculator</p>
+    <p>This calculator provides estimates for informational purposes only.</p>
+  </footer>
+
+  <script>
+
+    function money(number) {
+      return "$" + number.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function calculate() {
+
+      const price = Number(document.getElementById("price").value) || 0;
+      const cost = Number(document.getElementById("cost").value) || 0;
+      const fees = Number(document.getElementById("fees").value) || 0;
+      const sales = Number(document.getElementById("sales").value) || 0;
+      const fixed = Number(document.getElementById("fixed").value) || 0;
+      const ads = Number(document.getElementById("ads").value) || 0;
+
+      const revenue = price * sales;
+
+      const variableCosts = (cost + fees) * sales;
+
+      const totalCosts = variableCosts + fixed + ads;
+
+      const profit = revenue - totalCosts;
+
+      const margin = revenue > 0
+        ? (profit / revenue) * 100
+        : 0;
+
+      const profitPerSale = price - cost - fees;
+
+      let breakEven = 0;
+
+      if (profitPerSale > 0) {
+        breakEven = Math.ceil((fixed + ads) / profitPerSale);
+      }
+
+      document.getElementById("revenue").textContent = money(revenue);
+
+      document.getElementById("costs").textContent = money(totalCosts);
+
+      document.getElementById("profit").textContent = money(profit);
+
+      document.getElementById("margin").textContent =
+        margin.toFixed(1) + "%";
+
+      document.getElementById("breakEven").textContent =
+        breakEven.toLocaleString();
+
+    }
+
+  </script>
+
+</body>
+</html>
