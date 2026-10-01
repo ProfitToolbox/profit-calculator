@@ -4,54 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Small Business Profit Calculator</title>
-  <meta name="description" content="Free small business profit calculator. Calculate revenue, costs, profit, profit margin, and break-even sales quickly and easily.">
+  <title>Free Small Business Profit Calculator | ProfitToolbox</title>
+
+  <meta name="description" content="Free small business profit calculator. Calculate revenue, total costs, estimated profit, profit margin, and break-even sales in seconds.">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f6f7fb;
       color: #222;
+      line-height: 1.6;
     }
 
     header {
       background: #111827;
       color: white;
-      padding: 42px 20px;
+      padding: 48px 20px;
       text-align: center;
     }
 
     header h1 {
       margin: 0 0 12px;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
     }
 
     header p {
-      margin: 0 auto;
-      max-width: 650px;
-      line-height: 1.6;
+      max-width: 700px;
+      margin: auto;
       color: #d1d5db;
+      font-size: 1.05rem;
     }
 
     main {
-      max-width: 900px;
+      max-width: 950px;
       margin: 35px auto;
       padding: 0 20px;
     }
 
-    .calculator {
+    .calculator,
+    .info {
       background: white;
-      padding: 28px;
+      padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 25px rgba(0,0,0,0.07);
     }
 
-    .calculator h2 {
+    .calculator h2,
+    .info h2 {
       margin-top: 0;
     }
 
@@ -69,10 +71,14 @@
 
     input {
       width: 100%;
-      padding: 13px;
+      padding: 14px;
       border: 1px solid #d1d5db;
       border-radius: 8px;
       font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #111827;
     }
 
     button {
@@ -117,18 +123,33 @@
       font-size: 1.35rem;
     }
 
+    .break-even {
+      margin-top: 15px;
+    }
+
     .info {
-      background: white;
-      padding: 28px;
       margin-top: 25px;
-      border-radius: 16px;
-      line-height: 1.7;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    }
+
+    .info h2 {
+      margin-top: 25px;
+    }
+
+    .info h2:first-child {
+      margin-top: 0;
+    }
+
+    .faq {
+      margin-top: 25px;
+    }
+
+    .faq h3 {
+      margin-bottom: 5px;
     }
 
     footer {
       text-align: center;
-      padding: 30px 20px;
+      padding: 35px 20px;
       color: #6b7280;
       font-size: 0.85rem;
     }
@@ -140,7 +161,12 @@
       }
 
       header h1 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+      }
+
+      .calculator,
+      .info {
+        padding: 22px;
       }
     }
   </style>
@@ -149,7 +175,7 @@
 <body>
 
   <header>
-    <h1>Small Business Profit Calculator</h1>
+    <h1>Free Small Business Profit Calculator</h1>
     <p>
       Quickly estimate your revenue, total costs, profit, profit margin,
       and break-even sales.
@@ -159,7 +185,13 @@
   <main>
 
     <section class="calculator">
-      <h2>Calculate Your Profit</h2>
+
+      <h2>Calculate Your Business Profit</h2>
+
+      <p>
+        Enter your numbers below to estimate how much profit your business
+        could generate after product costs, fees, fixed expenses, and advertising.
+      </p>
 
       <div class="grid">
 
@@ -221,7 +253,7 @@
 
       </div>
 
-      <div class="result" style="margin-top:15px;">
+      <div class="result break-even">
         <span>Break-Even Sales</span>
         <strong id="breakEven">0</strong>
       </div>
@@ -230,38 +262,84 @@
 
     <section class="info">
 
-      <h2>How Does the Profit Calculator Work?</h2>
+      <h2>How Does a Business Profit Calculator Work?</h2>
 
       <p>
-        Your estimated revenue is calculated by multiplying your selling
-        price by the number of sales.
+        A business profit calculator helps estimate how much money remains
+        after subtracting business expenses from revenue.
       </p>
 
       <p>
-        Your estimated costs include your cost per sale, transaction fees,
+        Your revenue is calculated by multiplying your selling price by the
+        number of sales.
+      </p>
+
+      <p>
+        Your total costs include your cost per sale, transaction fees,
         monthly fixed costs, and advertising expenses.
       </p>
 
       <p>
-        Your estimated profit is your total revenue minus your total costs.
-        Your profit margin shows what percentage of your revenue remains
-        after those costs.
+        Estimated profit is your revenue minus your total costs.
+        Profit margin shows what percentage of your revenue remains as profit.
       </p>
 
-      <h2>Why Calculate Profit?</h2>
+      <h2>Why Calculate Your Profit Margin?</h2>
 
       <p>
-        Knowing your numbers can help you understand whether a product,
-        service, or business idea is financially sustainable before you
-        spend more money.
+        Profit margin can help business owners understand how much of each
+        dollar in revenue remains after expenses. Tracking your margin can
+        also help you evaluate pricing, expenses, and business goals.
       </p>
+
+      <h2>What Are Break-Even Sales?</h2>
+
+      <p>
+        Break-even sales are the approximate number of sales needed to cover
+        your fixed expenses and advertising costs after accounting for the
+        profit you make on each sale.
+      </p>
+
+      <div class="faq">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is a good profit margin for a small business?</h3>
+        <p>
+          Profit margins vary significantly by industry, business model,
+          pricing, and operating costs. Instead of relying on one universal
+          target, compare your margin with businesses similar to yours and
+          track how it changes over time.
+        </p>
+
+        <h3>How do I calculate business profit?</h3>
+        <p>
+          A simple calculation is total revenue minus total business costs.
+          This calculator helps organize several common costs so you can
+          estimate your profit more easily.
+        </p>
+
+        <h3>What is the break-even point?</h3>
+        <p>
+          The break-even point is the point where your revenue covers your
+          applicable business costs, leaving approximately zero profit.
+        </p>
+
+        <h3>Can I use this calculator for an online business?</h3>
+        <p>
+          Yes. You can use it for many types of businesses, including
+          ecommerce, digital products, services, and other businesses where
+          you can estimate sales and expenses.
+        </p>
+
+      </div>
 
     </section>
 
   </main>
 
   <footer>
-    <p>Free Small Business Profit Calculator</p>
+    <p>ProfitToolbox — Free Business Calculators & Tools</p>
     <p>This calculator provides estimates for informational purposes only.</p>
   </footer>
 
@@ -276,12 +354,23 @@
 
     function calculate() {
 
-      const price = Number(document.getElementById("price").value) || 0;
-      const cost = Number(document.getElementById("cost").value) || 0;
-      const fees = Number(document.getElementById("fees").value) || 0;
-      const sales = Number(document.getElementById("sales").value) || 0;
-      const fixed = Number(document.getElementById("fixed").value) || 0;
-      const ads = Number(document.getElementById("ads").value) || 0;
+      const price =
+        Number(document.getElementById("price").value) || 0;
+
+      const cost =
+        Number(document.getElementById("cost").value) || 0;
+
+      const fees =
+        Number(document.getElementById("fees").value) || 0;
+
+      const sales =
+        Number(document.getElementById("sales").value) || 0;
+
+      const fixed =
+        Number(document.getElementById("fixed").value) || 0;
+
+      const ads =
+        Number(document.getElementById("ads").value) || 0;
 
       const revenue = price * sales;
 
@@ -291,23 +380,27 @@
 
       const profit = revenue - totalCosts;
 
-      const margin = revenue > 0
-        ? (profit / revenue) * 100
-        : 0;
+      const margin =
+        revenue > 0 ? (profit / revenue) * 100 : 0;
 
-      const profitPerSale = price - cost - fees;
+      const profitPerSale =
+        price - cost - fees;
 
       let breakEven = 0;
 
       if (profitPerSale > 0) {
-        breakEven = Math.ceil((fixed + ads) / profitPerSale);
+        breakEven =
+          Math.ceil((fixed + ads) / profitPerSale);
       }
 
-      document.getElementById("revenue").textContent = money(revenue);
+      document.getElementById("revenue").textContent =
+        money(revenue);
 
-      document.getElementById("costs").textContent = money(totalCosts);
+      document.getElementById("costs").textContent =
+        money(totalCosts);
 
-      document.getElementById("profit").textContent = money(profit);
+      document.getElementById("profit").textContent =
+        money(profit);
 
       document.getElementById("margin").textContent =
         margin.toFixed(1) + "%";
